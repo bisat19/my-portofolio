@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Portfolio</title>
+  <link rel="stylesheet" href="/css/style.css" />
+  
+  <!-- Libre Baskerville -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+  
+  <!-- Manrope -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300..800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <h1 id="title">
+      <span class="libre-italic">W</span>hat's in<br>
+      <span class="libre-italic">My</span> Portfolio
+    </h1>
+
+    <div class="images-container">
+      <!-- Item 1 -->
+      <a href="resume.html" class="image-link">
+        <div class="image-item" data-target="left-top" data-size="100" data-rotate="-7" style="--caption-offset: -10px;">
+          <img src="assets/images/glasses.png" alt="Glasses">
+          <div class="image-caption">resume</div>
+        </div>
+      </a>
+
+      <!-- Item 2 -->
+      <a href="art.html" class="image-link">
+        <div class="image-item" data-target="right-top" data-size="125" data-rotate="10" style="--caption-offset: -8px;">
+          <img src="assets/images/camera.png" alt="Camera">
+          <div class="image-caption">my art</div>
+        </div>
+      </a>
+
+      <!-- Item 3 -->
+      <a href="project.html" class="image-link">
+        <div class="image-item" data-target="left-bottom" data-size="150" data-rotate="6" style="--caption-offset: -15px;">
+          <img src="assets/images/laptop.png" alt="Laptop">
+          <div class="image-caption">my project</div>
+        </div>
+      </a>
+
+      <!-- Item 4 -->
+      <a href="competition.html" class="image-link">
+        <div class="image-item" data-target="center-bottom" data-size="100" data-rotate="-45" style="--caption-offset: -5px;">
+          <img src="assets/images/medal.png" alt="Medal">
+          <div class="image-caption">awards</div>
+        </div>
+      </a>
+
+      <!-- Item 5 -->
+      <a href="certifications.html" class="image-link">
+        <div class="image-item" data-target="right-bottom" data-size="120" data-rotate="-15" style="--caption-offset: -8px;">
+          <img src="assets/images/papers.png" alt="Papers">
+          <div class="image-caption">certificates</div>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <script src="/js/main.js"></script>
+</body>
+</html>

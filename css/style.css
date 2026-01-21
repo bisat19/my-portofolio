@@ -1,0 +1,345 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #fff;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  min-height: 100vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+#title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'Libre Baskerville', serif;
+  font-size: clamp(2.5rem, 8vw, 4rem);
+  font-weight: 400;
+  color: #000;
+  line-height: 1.2;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 1s ease-out;
+  z-index: 10;
+  padding: 0 1rem;
+}
+
+#title.animate {
+  opacity: 1;
+}
+
+.libre-italic {
+  font-style: italic;
+  font-weight: 400;
+}
+
+.images-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+}
+
+.image-item {
+  position: absolute;
+  opacity: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  transition: all 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  text-align: center;
+  width: fit-content;
+}
+
+.image-item img {
+  display: block;
+  width: var(--size, 120px);
+  height: auto;
+  transform: rotate(var(--rotation, 0deg));
+  transition: transform 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.image-caption {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 500;
+  font-size: clamp(0.75rem, 2.5vw, 0.875rem);
+  color: #555;
+  white-space: nowrap;
+  margin-top: var(--caption-offset, -6px); /* default -6px */
+}
+
+.image-link {
+  text-decoration: none;
+  display: block;
+}
+
+.image-link:hover .image-item img {
+  transform: scale(1.05) rotate(var(--rotation, 0deg));
+  transition: transform 0.3s ease;
+}
+
+.image-link:hover .image-caption {
+  color: #007bff;
+}
+
+/* --- RESUME PAGE STYLES --- */
+
+.resume-container {
+  display: flex;
+  align-items: flex-start;
+  gap: 40px;
+  padding: 40px 60px;
+  background-color: #f9f9f9;
+  min-height: 100vh;
+}
+
+.profile-card {
+  background: white;
+  border-radius: 24px;
+  padding: 30px 25px 20px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.05);
+  text-align: center;
+  width: 280px;
+  transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+  margin-left: 20px;
+  position: relative;
+}
+
+.profile-card:hover {
+  transform: translateY(-10px) scale(1.02);
+}
+
+.profile-photo-wrapper {
+  position: relative;
+  top: -80px;
+  z-index: 2;
+}
+
+.profile-photo {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid white;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+.profile-photo:hover {
+  transform: scale(1.05);
+}
+
+.info-section {
+  margin-top: -50px; /* ⬇️ DEKATKAN INFO KE GAMBAR */
+  padding: 0 15px;
+}
+
+.info-section h3 {
+  font-family: 'Poppins', serif;
+  font-weight: 700;
+  margin: 5px 0 10px;
+  color: #222;
+  font-size: 1.0rem;
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 8px 0;
+  font-size: 0.8rem;
+  color: #000000;
+  font-family: 'Poppins', sans-serif;
+}
+
+.info-item span {
+  font-size: 1.1rem;
+}
+
+.info-item a {
+  color: #000000;
+  text-decoration: none;
+}
+
+.info-icon {
+  width: 20px;
+  height: 20px;
+  vertical-align: middle;
+  display: inline-block;
+  margin-right: 6px; /* jarak antara ikon dan teks */
+}
+
+/* CONTENT SECTION */
+.content-section {
+  flex: 1;
+  max-width: 600px;
+}
+
+.content-section h1 {
+  font-size: 3.5rem;
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 20px;
+  color: #000;
+}
+
+.libre-italic {
+  font-family: 'Libre Baskerville', serif;
+  font-style: italic;
+  font-weight: 400;
+}
+
+.intro-text {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #333;
+  margin-bottom: 30px;
+  text-align: justify;
+}
+
+.icon-slider {
+  margin-top: 10px;
+  overflow: hidden;
+  position: relative;
+}
+
+.icon-list {
+  display: flex;
+  gap: 10px;
+  animation: scrollIcons 10s linear infinite;
+  padding: 10px 0;
+}
+
+@keyframes scrollIcons {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+}
+
+.icon-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  min-width: 80px;
+}
+
+.icon-item img {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  filter: grayscale(20%) contrast(1.2);
+  transition: filter 0.3s ease;
+}
+
+.icon-item img:hover {
+  filter: grayscale(0%) contrast(1.2) scale(1.1);
+}
+
+.icon-item span {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.75rem;
+  color: #666;
+  text-align: center;
+  word-wrap: break-word;
+  max-width: 80px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .resume-container {
+    flex-direction: row; /* tetap sejajar */
+    gap: 20px;
+    padding: 20px;
+    flex-wrap: wrap; /* jika lebar terlalu kecil, biarkan wrapping */
+  }
+
+  .profile-card {
+    width: 100%;
+    margin-left: 0;
+    margin-bottom: 20px;
+  }
+
+  .content-section {
+    max-width: 100%;
+    flex: 1;
+  }
+
+  .typing-text {
+    font-size: 2.5rem;
+  }
+
+  .intro-text {
+    font-size: 0.9rem;
+  }
+
+  .icon-item {
+    min-width: 60px;
+  }
+
+  .icon-item img {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+/* --- DROP SHADOW CARD --- */
+
+.profile-card {
+  background: white;
+  border-radius: 24px;
+  padding: 30px 25px 20px;
+  box-shadow: 
+    0 8px 30px rgba(0,0,0,0.05),
+    0 0 20px rgba(0,0,0,0.03); /* tambahkan inner glow */
+  text-align: center;
+  width: 280px;
+  transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+  margin-left: 20px;
+  position: relative;
+}
+
+.profile-card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 
+    0 12px 40px rgba(0,0,0,0.1),
+    0 0 30px rgba(0,0,0,0.05);
+}
+
+/* --- TYPING ANIMATION --- */
+
+.typing-text span {
+  opacity: 0;
+  display: inline-block;
+  animation: typeIn 0.5s forwards;
+}
+
+.typing-text span:nth-child(1) { animation-delay: 0.1s; }
+.typing-text span:nth-child(2) { animation-delay: 0.2s; }
+.typing-text span:nth-child(3) { animation-delay: 0.3s; }
+.typing-text span:nth-child(4) { animation-delay: 0.4s; }
+.typing-text span:nth-child(5) { animation-delay: 0.5s; }
+.typing-text span:nth-child(6) { animation-delay: 0.6s; }
+
+@keyframes typeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Untuk huruf H dan ! yang italic */
+.typing-text .libre-italic {
+  font-family: 'Libre Baskerville', serif;
+  font-style: italic;
+  font-weight: 400;
+}
