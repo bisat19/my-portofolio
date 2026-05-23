@@ -888,7 +888,7 @@ body {
       position: absolute;
       left: calc(100% / 6);
       right: calc(100% / 6);
-      top: 107px;
+      top: 119.5px; /* Menyelaraskan tepat di tengah dot */
       height: 2.5px;
       background: var(--timeline-color);
       z-index: 0;
@@ -969,22 +969,24 @@ body {
     /* Snake connector between rows */
     .tl-snake {
       width: 100%;
-      height: 44px;
+      height: 120px;
       position: relative;
-      margin: 0 0 4px;
+      margin: -45px 0; /* Menarik baris agar kurva bertemu dengan bar horizontal */
+      z-index: 1;
+      pointer-events: none;
     }
 
     .tl-snake svg {
       width: 100%;
       height: 100%;
-      overflow: visible;
+      display: block;
     }
 
     /* Menyesuaikan bar agar sejajar dengan dot */
     .tl-bar {
       left: calc(100% / 6);
       right: calc(100% / 6);
-      top: 112px; /* Disesuaikan dengan tinggi logo baru */
+      top: 119.5px; 
     }
 
     /* ============================
