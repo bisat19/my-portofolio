@@ -683,10 +683,10 @@ body {
     }
 
     .connect-card {
-      background: rgba(255, 255, 255, 0.25);
+      background: rgba(255, 255, 255, 0);
       backdrop-filter: blur(15px);
       -webkit-backdrop-filter: blur(15px);
-      border: 1px solid rgba(255, 255, 255, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0);
       border-radius: var(--radius-lg);
       padding: 0;
       width: 120px;
