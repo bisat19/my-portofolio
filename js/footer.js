@@ -9,9 +9,23 @@ async function initDynamicFooter() {
         // Memasukkan konten footer ke bagian bawah body
         document.body.insertAdjacentHTML('beforeend', html);
 
-        // Jalankan efek magnify setelah elemen masuk ke DOM
         const dockItems = document.querySelectorAll('.dock-item');
+        const currentPath = window.location.pathname.split('/').pop() || 'index.html';
 
+        // Set active dot based on current page
+        dockItems.forEach(item => {
+            const href = item.getAttribute('href');
+            const dot = item.querySelector('.dock-dot');
+            
+            if (dot) {
+                // Jika href sesuai dengan nama file saat ini, atau jika di resume.html dan link adalah #
+                if (href === currentPath || (currentPath === 'resume.html' && href === '#')) {
+                    dot.classList.add('active');
+                }
+            }
+        });
+
+        // Jalankan efek magnify setelah elemen masuk ke DOM
         dockItems.forEach((item, i) => {
             item.addEventListener('mouseenter', () => {
                 // Reset all
