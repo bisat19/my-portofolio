@@ -110,15 +110,19 @@
 
     .proj-card.top-img .card-body {
       padding: 14px 16px 18px;
+      display: flex;
+      flex-direction: column;
     }
 
     /* Bottom row: text on top, image on bottom */
     .proj-card.bot-img {
-      background: #e9e8e3;
+      background: var(--card-bg);
     }
 
     .proj-card.bot-img .card-body {
-      padding: 16px 16px 10px;
+      padding: 18px 16px 14px;
+      display: flex;
+      flex-direction: column;
     }
 
     .proj-card.bot-img .card-image {
@@ -166,6 +170,26 @@
       font-size: 0.72rem;
       color: var(--muted);
       line-height: 1.55;
+    }
+
+    .card-arrow {
+      width: 32px;
+      height: 32px;
+      background: var(--accent);
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 15px;
+      font-size: 1.1rem;
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.3s ease;
+      align-self: flex-start;
+    }
+
+    .proj-card:hover .card-arrow {
+      transform: translateX(6px);
+      background: var(--accent-hover);
     }
 
     /* ===========================
