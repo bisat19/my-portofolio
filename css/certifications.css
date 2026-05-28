@@ -32,40 +32,123 @@ body {
   margin-top: 7px;
 }
 
-/* DOCK STYLES */
-.dock-footer { position: fixed; bottom: 18px; left: 50%; transform: translateX(-50%); z-index: 999; }
-.dock {
-  display: flex; align-items: flex-end; gap: 8px; padding: 10px 18px;
-  background: rgba(255,255,255,0.72); backdrop-filter: blur(20px);
-  border: 1.5px solid rgba(255,255,255,0.55); border-radius: 24px;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.18);
-}
-.dock-item { display: flex; flex-direction: column; align-items: center; position: relative; text-decoration: none; }
-.dock-icon {
-  width: 52px; height: 52px; border-radius: 14px; display: flex; align-items: center; justify-content: center;
-  transition: transform 0.22s cubic-bezier(0.34,1.56,0.64,1); box-shadow: 0 4px 12px rgba(0,0,0,0.18);
-}
-.dock-icon img {
-  width: 100%; height: 100%; object-fit: cover; border-radius: 12px;
-  transform: scale(0.9); box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-  background: rgba(255, 255, 255, 0.8); border: 2px solid rgba(255,255,255,0.8);
-}
-.dock-item:hover .dock-icon { transform: translateY(-14px) scale(1.25); }
-.dock-item.neighbor-1 .dock-icon { transform: translateY(-7px) scale(1.1); }
-.dock-label {
-  position: absolute; bottom: calc(100% + 10px); left: 50%; transform: translateX(-50%) translateY(4px);
-  background: rgba(20,20,20,0.85); color: #fff; font-size: 0.68rem; font-weight: 500; padding: 4px 10px; border-radius: 8px;
-  opacity: 0; pointer-events: none; transition: all 0.15s ease;
-}
-.dock-item:hover .dock-label { opacity: 1; transform: translateX(-50%) translateY(0); }
-.dock-dot { width: 4px; height: 4px; border-radius: 50%; background: #bbb; }
-.dock-dot.active { background: var(--accent); }
-.dock-separator {
-  width: 1.5px; height: 38px; background: rgba(0,0,0,0.12); border-radius: 1px; align-self: center; margin: 0 4px;
-}
+/* ===========================
+       MACOS DOCK
+    =========================== */
+    .dock-footer {
+      position: fixed;
+      bottom: 18px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 999;
+    }
 
-.home-icon           { background: linear-gradient(145deg, #5b9bd5, #3a7cc7); }
-.project-icon        { background: linear-gradient(145deg, #73c69d, #48a97d); }
-.certifications-icon { background: linear-gradient(145deg, #e8a87c, #c97a45); }
-.competition-icon    { background: linear-gradient(145deg, #b37be8, #8f52d0); }
-.art-icon            { background: linear-gradient(145deg, #f07ca0, #d44f7c); }
+    .dock {
+      display: flex;
+      align-items: flex-end;
+      gap: 8px;
+      padding: 10px 18px 10px;
+      background: rgba(255,255,255,0.72);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1.5px solid rgba(255,255,255,0.55);
+      border-radius: 24px;
+      box-shadow:
+        0 8px 32px rgba(0,0,0,0.18),
+        0 2px 8px rgba(0,0,0,0.1),
+        inset 0 1px 0 rgba(255,255,255,0.85);
+    }
+
+    .dock-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      cursor: pointer;
+      position: relative;
+      text-decoration: none;
+    }
+
+    .dock-icon {
+      width: 52px; height: 52px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      transition: transform 0.22s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.22s ease;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.18);
+    }
+
+    .dock-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 12px;
+      transform: scale(0.9);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      background: rgba(255, 255, 255, 0.8);
+      border: 2px solid rgba(255,255,255,0.8);
+    }
+
+    .dock-item:hover .dock-icon {
+      transform: translateY(-14px) scale(1.25);
+    }
+
+    .dock-item.neighbor-1 .dock-icon {
+      transform: translateY(-7px) scale(1.1);
+    }
+
+    .dock-label {
+      position: absolute;
+      bottom: calc(100% + 10px);
+      left: 50%;
+      transform: translateX(-50%) translateY(4px);
+      background: rgba(20,20,20,0.85);
+      color: #fff;
+      font-size: 0.68rem;
+      font-weight: 500;
+      padding: 4px 10px;
+      border-radius: 8px;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.15s ease, transform 0.15s ease;
+    }
+
+    .dock-label::after {
+      content: '';
+      position: absolute;
+      top: 100%; left: 50%;
+      transform: translateX(-50%);
+      border: 4px solid transparent;
+      border-top-color: rgba(20,20,20,0.85);
+    }
+
+    .dock-item:hover .dock-label {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .dock-dot {
+      width: 4px; height: 4px;
+      border-radius: 50%;
+      background: #bbb;
+    }
+
+    .dock-dot.active { background: var(--accent); }
+
+    .dock-separator {
+      width: 1.5px;
+      height: 38px;
+      background: rgba(0,0,0,0.12);
+      border-radius: 1px;
+      align-self: center;
+      margin: 0 4px;
+    }
+
+    .home-icon           { background: linear-gradient(145deg, #5b9bd5, #3a7cc7); }
+    .project-icon        { background: linear-gradient(145deg, #73c69d, #48a97d); }
+    .certifications-icon { background: linear-gradient(145deg, #e8a87c, #c97a45); }
+    .competition-icon    { background: linear-gradient(145deg, #b37be8, #8f52d0); }
+    .art-icon            { background: linear-gradient(145deg, #f07ca0, #d44f7c); }
