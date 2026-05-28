@@ -114,16 +114,24 @@
 
     /* Bottom row: text on top, image on bottom */
     .proj-card.bot-img {
-      background: #e9e8e3; /* Reverted to original background color */
+      background: var(--card-bg);
     }
 
     .proj-card.bot-img .card-body {
-      padding: 16px 16px 10px; /* Reverted to original padding */
+      padding: 14px 16px 18px;
+      flex-grow: 1;
     }
 
     .proj-card.bot-img .card-image {
-      /* No changes needed here, as the previous change was to add a shadow and background,
-         which were not part of the original request to revert. */
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      background: #e8e6e0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      flex-shrink: 0;
     }
 
     .proj-card.bot-img .card-image img {
