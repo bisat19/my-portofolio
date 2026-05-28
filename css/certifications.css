@@ -87,7 +87,7 @@ body {
       border-radius: 12px;
       transform: scale(0.9);
       box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-      background: rgba(255, 255, 255, 0.8);
+      background: rgba(255, 255, 255, 0.409);
       border: 2px solid rgba(255,255,255,0.8);
     }
 
@@ -151,4 +151,4 @@ body {
     .project-icon        { background: linear-gradient(145deg, #73c69d, #48a97d); }
     .certifications-icon { background: linear-gradient(145deg, #e8a87c, #c97a45); }
     .competition-icon    { background: linear-gradient(145deg, #b37be8, #8f52d0); }
-    .art-icon            { background: linear-gradient(145deg, #f07ca0, #d44f7c); } */
+    .art-icon            { background: linear-gradient(145deg, #f07ca0, #d44f7c); }  */
