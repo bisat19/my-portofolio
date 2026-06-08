@@ -143,7 +143,7 @@
       color: var(--text);
       overflow-x: hidden;
       min-height: 100vh;
-      padding-bottom: 240px; /* Ruang ekstra untuk animasi orbit */
+      padding-bottom: 300px; /* Ruang lebih agar dock tidak menutupi konten */
     }
 
     /* ===========================
@@ -198,7 +198,7 @@
       align-items: center;
       justify-content: center;
       margin-top: -20px;
-      margin-bottom: 60px;
+      margin-bottom: 80px;
     }
 
     /* ---- Glow orb behind hands ---- */
@@ -314,6 +314,7 @@
       opacity: 0;
       /* will be activated by JS */
       transition: box-shadow 0.25s ease, transform 0.25s ease;
+      z-index: 10; /* Memastikan kartu berada di depan tangan */
     }
 
     .award-card:hover {

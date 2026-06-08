@@ -60,9 +60,16 @@ function getOrbitR() {
   return ORBIT_R_BASE;
 }
 
+/* Helper untuk menentukan radius per kartu */
+function getCardRadius(card) {
+  const r = getOrbitR();
+  // Khusus card4 (paling bawah), kurangi radius agar naik ke depan tangan
+  return (card.id === 'card4') ? r * 0.75 : r;
+}
+
 /* Apply transform to a card given a current angle in degrees */
 function setCardTransform(card, angleDeg, scale = 1) {
-  const r = getOrbitR();
+  const r = getCardRadius(card);
   const a = rad(angleDeg);
   const tx = Math.cos(a) * r;
   const ty = Math.sin(a) * r;
@@ -112,7 +119,7 @@ function animateCard(card, finalAngle, startDelay) {
 
 /* Hover: slight outward float */
 function addHoverEffect(card, finalAngle) {
-  const r = getOrbitR();
+  const r = getCardRadius(card);
   const a = rad(finalAngle);
   const tx = Math.cos(a) * r;
   const ty = Math.sin(a) * r;
