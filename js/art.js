@@ -8,7 +8,8 @@ const viewport   = document.getElementById('carouselViewport');
 let current = Math.floor(slides.length / 2); // start centered
 
 function getSlideW() {
-  return slides[0].offsetWidth + 20; // width + gap
+  const gap = 30; // Sesuaikan dengan CSS gap
+  return (slides[0]?.offsetWidth || 150) + gap;
 }
 
 function getViewportCenter() {
@@ -102,19 +103,27 @@ function makeDraggable(el) {
     origTop  = parseFloat(el.style.top);
     el.classList.add('dragging');
     el.style.transition = 'none';
+    
+    document.addEventListener('mousemove', onMouseMove);
+    document.addEventListener('mouseup', onMouseUp);
   }
 
-  function onMove(cx, cy) {
-    if (!isDragging) return;
-    el.style.left = (origLeft + cx - startX) + 'px';
-    el.style.top  = (origTop  + cy - startY) + 'px';
+  function onMouseMove(e) {
+    if (isDragging) {
+      el.style.left = (origLeft + e.clientX - startX) + 'px';
+      el.style.top  = (origTop  + e.clientY - startY) + 'px';
+    }
   }
 
-  function onEnd() {
+  function onMouseUp() {
     if (!isDragging) return;
     isDragging = false;
     el.classList.remove('dragging');
     el.style.transition = '';
+    
+    document.removeEventListener('mousemove', onMouseMove);
+    document.removeEventListener('mouseup', onMouseUp);
+
     // Soft bounce if out of screen
     const rect = el.getBoundingClientRect();
     let l = parseFloat(el.style.left);
@@ -132,8 +141,6 @@ function makeDraggable(el) {
     e.preventDefault();
     onStart(e.clientX, e.clientY);
   });
-  document.addEventListener('mousemove', e => onMove(e.clientX, e.clientY));
-  document.addEventListener('mouseup',   () => onEnd());
 
   // Touch
   el.addEventListener('touchstart', e => {
@@ -143,10 +150,13 @@ function makeDraggable(el) {
   }, { passive: false });
   el.addEventListener('touchmove', e => {
     e.preventDefault();
-    const t = e.touches[0];
-    onMove(t.clientX, t.clientY);
+    if (isDragging) {
+      const t = e.touches[0];
+      el.style.left = (origLeft + t.clientX - startX) + 'px';
+      el.style.top  = (origTop  + t.clientY - startY) + 'px';
+    }
   }, { passive: false });
-  el.addEventListener('touchend', () => onEnd());
+  el.addEventListener('touchend', onMouseUp);
 }
 
 // Make all draggable elements draggable
