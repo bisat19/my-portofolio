@@ -159,8 +159,6 @@ body {
     :root {
       --cork:       #c8905a;
       --cork-dark:  #b07840;
-      --pin-red:    #d94040;
-      --pin-blue:   #4a90d9;
       --card-bg:    #f8f6f0;
       --text:       #2a1a0a;
       --muted:      #8a6a4a;
@@ -249,12 +247,14 @@ body {
       z-index: 50;
       user-select: none;
       touch-action: none;
+      pointer-events: auto;
       transition: box-shadow 0.2s ease, transform 0.15s ease;
-      /* pin shadow */
-      filter: drop-shadow(2px 4px 8px rgba(0,0,0,0.28));
     }
 
     .draggable:active { cursor: grabbing; }
+
+    /* Hapus pin/lingkaran merah di bagian atas */
+    .draggable::before { display: none !important; }
 
     .draggable.dragging {
       transform: scale(1.05) rotate(2deg);
@@ -359,11 +359,12 @@ body {
     /* Individual slide — paper/canvas texture */
     .art-slide {
       flex-shrink: 0;
-      width: 240px; /* Ukuran diperkecil agar seperti poster */
+      width: 180px; /* Diperkecil lagi agar proporsi poster & di atas dock */
+      aspect-ratio: 2 / 3;
       background: #ece9e1;
       border-radius: 4px;
       box-shadow:
-        3px 4px 12px rgba(0,0,0,0.25),
+        2px 3px 10px rgba(0,0,0,0.2),
         0 1px 3px rgba(0,0,0,0.15),
         inset 0 0 0 1px rgba(0,0,0,0.06);
       overflow: hidden;
@@ -444,14 +445,18 @@ body {
     /* Caption under image */
     .slide-caption {
       position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: rgba(255, 255, 255, 0.9);
-      padding: 12px;
-      opacity: 0; /* Sembunyikan tulisan secara default */
+      inset: 0; /* Menutupi seluruh kartu */
+      background: rgba(0, 0, 0, 0.75); /* Overlay gelap seperti competition */
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 20px;
+      opacity: 0;
       transition: opacity 0.3s ease;
       pointer-events: none;
+      backdrop-filter: blur(4px);
       z-index: 10;
     }
 
@@ -460,51 +465,18 @@ body {
     }
 
     .slide-title {
-      font-family: 'Caveat', cursive;
+      font-family: 'Poppins', sans-serif;
       font-size: 1.15rem;
       font-weight: 700;
-      color: #2a1a0a;
+      color: #fff;
       margin-bottom: 3px;
     }
 
     .slide-meta {
       font-size: 0.68rem;
-      color: #8a6a4a;
+      color: rgba(255, 255, 255, 0.8);
       letter-spacing: 0.04em;
     }
-
-    /* ===========================
-       CAROUSEL ARROW BUTTONS
-    =========================== */
-    .carousel-arrows {
-      display: flex;
-      gap: 14px;
-      margin-top: 28px;
-      z-index: 10;
-    }
-
-    .arr-btn {
-      width: 48px; height: 48px;
-      border-radius: 50%;
-      border: none;
-      background: rgba(255,255,220,0.7);
-      backdrop-filter: blur(6px);
-      box-shadow: 2px 3px 10px rgba(0,0,0,0.22), inset 0 1px 2px rgba(255,255,255,0.5);
-      cursor: pointer;
-      font-size: 1.2rem;
-      color: #3a2a0a;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: transform 0.2s cubic-bezier(0.34,1.56,0.64,1), background 0.2s;
-    }
-
-    .arr-btn:hover {
-      background: rgba(255,255,200,0.9);
-      transform: scale(1.12);
-    }
-
-    .arr-btn:active { transform: scale(0.95); }
     /* ===========================
        RESPONSIVE
     =========================== */
