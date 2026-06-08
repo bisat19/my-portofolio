@@ -152,3 +152,402 @@ body {
     .certifications-icon { background: linear-gradient(145deg, #e8a87c, #c97a45); }
     .competition-icon    { background: linear-gradient(145deg, #b37be8, #8f52d0); }
     .art-icon            { background: linear-gradient(145deg, #f07ca0, #d44f7c); }  */
+
+    /* ===========================
+       ROOT & RESET
+    =========================== */
+    :root {
+      --cork:       #c8905a;
+      --cork-dark:  #b07840;
+      --pin-red:    #d94040;
+      --pin-blue:   #4a90d9;
+      --card-bg:    #f8f6f0;
+      --text:       #2a1a0a;
+      --muted:      #8a6a4a;
+      --accent:     #4a90d9;
+      --r-md: 6px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { height: 100%; }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+      padding-bottom: 110px;
+      position: relative;
+      /* Cork texture via CSS — layered noise gradients */
+      background-color: #c8905a;
+      background-image:
+        /* grain layer 1 */
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0.3'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.35'/%3E%3C/svg%3E"),
+        /* subtle vignette */
+        radial-gradient(ellipse at 50% 50%, #d4995e 0%, #b07840 100%);
+      background-blend-mode: multiply, normal;
+      cursor: default;
+    }
+
+    /* Cork texture overlay using pseudo-element for deeper texture */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background-image:
+        repeating-linear-gradient(
+          17deg,
+          transparent 0px,
+          rgba(0,0,0,0.018) 1px,
+          transparent 2px,
+          transparent 18px
+        ),
+        repeating-linear-gradient(
+          -17deg,
+          transparent 0px,
+          rgba(0,0,0,0.015) 1px,
+          transparent 2px,
+          transparent 22px
+        ),
+        repeating-linear-gradient(
+          80deg,
+          transparent 0px,
+          rgba(255,255,255,0.04) 1px,
+          transparent 2px,
+          transparent 14px
+        );
+    }
+
+    /* If user provides Google Drive bg image, uncomment and set id:
+    body {
+      background-image: url("https://drive.google.com/uc?export=view&id=YOUR_BG_ID") !important;
+      background-size: cover;
+      background-position: center;
+    }
+    */
+
+    /* ===========================
+       EVERYTHING ABOVE THE CORK
+    =========================== */
+    .page-content {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+    }
+
+    /* ===========================
+       DRAGGABLE OBJECTS
+       Blue items from mockup:
+       - top-left: circle + square
+       - top-right: square
+       - bottom-right: circle + circle
+    =========================== */
+    .draggable {
+      position: fixed;
+      cursor: grab;
+      z-index: 50;
+      user-select: none;
+      touch-action: none;
+      transition: box-shadow 0.2s ease, transform 0.15s ease;
+      /* pin shadow */
+      filter: drop-shadow(2px 4px 8px rgba(0,0,0,0.28));
+    }
+
+    .draggable:active { cursor: grabbing; }
+
+    .draggable.dragging {
+      transform: scale(1.05) rotate(2deg);
+      filter: drop-shadow(4px 8px 18px rgba(0,0,0,0.4));
+      z-index: 200;
+    }
+
+    /* Pin dot on each draggable */
+    .draggable::before {
+      content: '';
+      position: absolute;
+      top: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 14px; height: 14px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 35%, #ff6b6b, #c0392b);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.4), inset 0 1px 2px rgba(255,255,255,0.3);
+      z-index: 2;
+    }
+
+    /* Circle draggable */
+    .drag-circle {
+      border-radius: 50%;
+      background: linear-gradient(135deg, #7ab8e8, #4a90d9);
+      box-shadow: 0 4px 16px rgba(74,144,217,0.4), inset 0 1px 2px rgba(255,255,255,0.35);
+    }
+
+    /* Square/rect draggable */
+    .drag-square {
+      border-radius: 12px;
+      background: linear-gradient(135deg, #7ab8e8, #4a90d9);
+      box-shadow: 0 4px 16px rgba(74,144,217,0.4), inset 0 1px 2px rgba(255,255,255,0.35);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .drag-square img, .drag-circle img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      border-radius: inherit;
+      opacity: 0.9;
+      display: none; /* shown when src is set */
+    }
+
+    /* Inner reflection */
+    .drag-circle::after, .drag-square::after {
+      content: '';
+      position: absolute;
+      top: 8%; left: 10%;
+      width: 55%; height: 35%;
+      background: linear-gradient(135deg, rgba(255,255,255,0.35), transparent);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    /* ===========================
+       TITLE STICKY NOTE
+    =========================== */
+    .sticky-title {
+      position: fixed;
+      top: 32px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+      background: #fef9c3;
+      padding: 10px 28px 14px;
+      border-radius: 3px;
+      box-shadow: 3px 5px 14px rgba(0,0,0,0.22), inset 0 -2px 4px rgba(0,0,0,0.06);
+      font-family: 'Caveat', cursive;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #3a2a0a;
+      text-align: center;
+      white-space: nowrap;
+      cursor: grab;
+    }
+
+    .sticky-title::before {
+      content: '';
+      position: absolute;
+      top: -10px; left: 50%;
+      transform: translateX(-50%);
+      width: 14px; height: 14px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 35%, #ff6b6b, #c0392b);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+    }
+
+    /* ===========================
+       CAROUSEL SECTION
+    =========================== */
+    .carousel-section {
+      position: relative;
+      z-index: 5;
+      /* vertically centered in the viewport */
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 100px 0 20px;
+    }
+
+    /* The visible window */
+    .carousel-viewport {
+      width: 100%;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Fade mask: left and right edges fade to transparent */
+    .carousel-viewport::before,
+    .carousel-viewport::after {
+      content: '';
+      position: absolute;
+      top: 0; bottom: 0;
+      width: 18%;
+      z-index: 10;
+      pointer-events: none;
+    }
+
+    .carousel-viewport::before {
+      left: 0;
+      background: linear-gradient(to right,
+        rgba(185, 130, 75, 0.82) 0%,
+        transparent 100%
+      );
+    }
+
+    .carousel-viewport::after {
+      right: 0;
+      background: linear-gradient(to left,
+        rgba(185, 130, 75, 0.82) 0%,
+        transparent 100%
+      );
+    }
+
+    /* Track */
+    .carousel-track {
+      display: flex;
+      gap: 20px;
+      padding: 20px 10%;
+      transition: transform 0.5s cubic-bezier(0.77,0,0.18,1);
+      will-change: transform;
+    }
+
+    /* Individual slide — paper/canvas texture */
+    .art-slide {
+      flex-shrink: 0;
+      width: 320px;
+      background: #ece9e1;
+      border-radius: 4px;
+      box-shadow:
+        3px 4px 12px rgba(0,0,0,0.25),
+        0 1px 3px rgba(0,0,0,0.15),
+        inset 0 0 0 1px rgba(0,0,0,0.06);
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.4s ease;
+      transform-origin: bottom center;
+    }
+
+    /* Tape strip at top */
+    .art-slide::before {
+      content: '';
+      position: absolute;
+      top: -8px; left: 50%;
+      transform: translateX(-50%) rotate(-1deg);
+      width: 60px; height: 22px;
+      background: rgba(255,255,200,0.55);
+      border: 1px solid rgba(200,190,100,0.4);
+      border-radius: 2px;
+      z-index: 5;
+      backdrop-filter: blur(1px);
+    }
+
+    .art-slide:hover {
+      transform: translateY(-8px) rotate(0.5deg) scale(1.02);
+      box-shadow:
+        6px 12px 28px rgba(0,0,0,0.32),
+        0 2px 6px rgba(0,0,0,0.2),
+        inset 0 0 0 1px rgba(0,0,0,0.06);
+    }
+
+    /* Active/center slide */
+    .art-slide.active {
+      transform: scale(1.04) translateY(-4px);
+    }
+
+    /* Opacity fade for non-center slides (done via JS) */
+    .art-slide.side { opacity: 0.55; }
+    .art-slide.far  { opacity: 0.28; }
+
+    /* Image area */
+    .slide-img-wrap {
+      width: 100%;
+      aspect-ratio: 3/4;
+      background: #e0ddd5;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .slide-img-wrap img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    .art-slide:hover .slide-img-wrap img { transform: scale(1.04); }
+
+    /* Placeholder when no image */
+    .slide-placeholder {
+      font-size: 3.5rem;
+      opacity: 0.25;
+      position: absolute;
+    }
+
+    /* Paper texture overlay */
+    .slide-img-wrap::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      mix-blend-mode: multiply;
+    }
+
+    /* Caption under image */
+    .slide-caption {
+      padding: 14px 16px 18px;
+    }
+
+    .slide-title {
+      font-family: 'Caveat', cursive;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #2a1a0a;
+      margin-bottom: 3px;
+    }
+
+    .slide-meta {
+      font-size: 0.68rem;
+      color: #8a6a4a;
+      letter-spacing: 0.04em;
+    }
+
+    /* ===========================
+       CAROUSEL ARROW BUTTONS
+    =========================== */
+    .carousel-arrows {
+      display: flex;
+      gap: 14px;
+      margin-top: 28px;
+      z-index: 10;
+    }
+
+    .arr-btn {
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      border: none;
+      background: rgba(255,255,220,0.7);
+      backdrop-filter: blur(6px);
+      box-shadow: 2px 3px 10px rgba(0,0,0,0.22), inset 0 1px 2px rgba(255,255,255,0.5);
+      cursor: pointer;
+      font-size: 1.2rem;
+      color: #3a2a0a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.2s cubic-bezier(0.34,1.56,0.64,1), background 0.2s;
+    }
+
+    .arr-btn:hover {
+      background: rgba(255,255,200,0.9);
+      transform: scale(1.12);
+    }
+
+    .arr-btn:active { transform: scale(0.95); }
+    /* ===========================
+       RESPONSIVE
+    =========================== */
+    @media (max-width: 680px) {
+      .art-slide { width: 240px; }
+      .sticky-title { font-size: 1.2rem; padding: 8px 18px 11px; top: 20px; }
+      .drag-circle, .drag-square { transform: scale(0.75) !important; }
+      .dock-icon { width: 44px; height: 44px; font-size: 1.2rem; border-radius: 12px; }
+      .dock { gap: 5px; padding: 8px 12px; }
+    }
+  

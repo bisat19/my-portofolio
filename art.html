@@ -1,18 +1,162 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Arts — Abisatya</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Art — Abisatya</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="css/art.css">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
   <main class="page">
-    <h1 class="sec-title">Arts</h1>
-    <!-- Konten seni Anda di sini -->
-  </main>
+<div class="page-content">
 
+  <!-- ============================
+       STICKY TITLE
+  ============================ -->
+  <div class="sticky-title" id="stickyTitle">🎨 Art Gallery</div>
+
+  <!-- ============================
+       DRAGGABLE OBJECTS
+       (Blue items from mockup)
+  ============================ -->
+
+  <!-- Top-left: circle -->
+  <div class="draggable drag-circle" id="d1"
+       style="width:90px;height:90px;top:60px;left:40px"
+       title="Drag me!">
+    <!-- Place an image inside if desired:
+    <img src="your-image.jpg" alt=""> -->
+  </div>
+
+  <!-- Top-left: square -->
+  <div class="draggable drag-square" id="d2"
+       style="width:110px;height:110px;top:48px;left:148px"
+       title="Drag me!">
+  </div>
+
+  <!-- Top-right: square -->
+  <div class="draggable drag-square" id="d3"
+       style="width:120px;height:110px;top:48px;right:40px;left:auto"
+       title="Drag me!">
+  </div>
+
+  <!-- Bottom-right: circle 1 -->
+  <div class="draggable drag-circle" id="d4"
+       style="width:100px;height:100px;bottom:130px;right:160px;left:auto;top:auto"
+       title="Drag me!">
+  </div>
+
+  <!-- Bottom-right: circle 2 -->
+  <div class="draggable drag-circle" id="d5"
+       style="width:100px;height:100px;bottom:130px;right:44px;left:auto;top:auto"
+       title="Drag me!">
+  </div>
+
+  <!-- ============================
+       ART CAROUSEL
+  ============================ -->
+  <section class="carousel-section">
+
+    <div class="carousel-viewport" id="carouselViewport">
+      <div class="carousel-track" id="carouselTrack">
+
+        <div class="art-slide">
+          <div class="slide-img-wrap">
+            <!-- Replace src with your art image -->
+            <img src="" alt="Artwork 1" onerror="this.style.display='none'">
+            <span class="slide-placeholder">🖼️</span>
+          </div>
+          <div class="slide-caption">
+            <div class="slide-title">Untitled No. 1</div>
+            <div class="slide-meta">Digital · 2024</div>
+          </div>
+        </div>
+
+        <div class="art-slide">
+          <div class="slide-img-wrap">
+            <img src="" alt="Artwork 2" onerror="this.style.display='none'">
+            <span class="slide-placeholder">🎨</span>
+          </div>
+          <div class="slide-caption">
+            <div class="slide-title">Golden Hour Study</div>
+            <div class="slide-meta">Watercolor · 2023</div>
+          </div>
+        </div>
+
+        <div class="art-slide">
+          <div class="slide-img-wrap">
+            <img src="" alt="Artwork 3" onerror="this.style.display='none'">
+            <span class="slide-placeholder">✏️</span>
+          </div>
+          <div class="slide-caption">
+            <div class="slide-title">Figure Study III</div>
+            <div class="slide-meta">Pencil on Paper · 2024</div>
+          </div>
+        </div>
+
+        <div class="art-slide">
+          <div class="slide-img-wrap">
+            <img src="" alt="Artwork 4" onerror="this.style.display='none'">
+            <span class="slide-placeholder">🖌️</span>
+          </div>
+          <div class="slide-caption">
+            <div class="slide-title">Abstract Composition</div>
+            <div class="slide-meta">Acrylic · 2023</div>
+          </div>
+        </div>
+
+        <div class="art-slide">
+          <div class="slide-img-wrap">
+            <img src="" alt="Artwork 5" onerror="this.style.display='none'">
+            <span class="slide-placeholder">🌿</span>
+          </div>
+          <div class="slide-caption">
+            <div class="slide-title">Nature Series II</div>
+            <div class="slide-meta">Digital Painting · 2024</div>
+          </div>
+        </div>
+
+        <div class="art-slide">
+          <div class="slide-img-wrap">
+            <img src="" alt="Artwork 6" onerror="this.style.display='none'">
+            <span class="slide-placeholder">🌙</span>
+          </div>
+          <div class="slide-caption">
+            <div class="slide-title">Night Sketch</div>
+            <div class="slide-meta">Ink on Paper · 2023</div>
+          </div>
+        </div>
+
+        <div class="art-slide">
+          <div class="slide-img-wrap">
+            <img src="" alt="Artwork 7" onerror="this.style.display='none'">
+            <span class="slide-placeholder">🏙️</span>
+          </div>
+          <div class="slide-caption">
+            <div class="slide-title">Urban Landscape</div>
+            <div class="slide-meta">Mixed Media · 2024</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Arrow navigation only (no dots) -->
+    <div class="carousel-arrows">
+      <button class="arr-btn" id="prevBtn" aria-label="Previous">&#8592;</button>
+      <button class="arr-btn" id="nextBtn" aria-label="Next">&#8594;</button>
+    </div>
+
+  </section>
+
+</div><!-- end page-content -->
+  </main>
+  <script src="js/art.js"></script>
   <script src="js/footer.js"></script>
 </body>
 </html>
