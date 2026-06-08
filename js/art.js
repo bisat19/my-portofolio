@@ -3,6 +3,8 @@
 ============================================ */
 const track      = document.getElementById('carouselTrack');
 const slides     = Array.from(track.querySelectorAll('.art-slide'));
+const prevBtn    = document.getElementById('prevBtn');
+const nextBtn    = document.getElementById('nextBtn');
 const viewport   = document.getElementById('carouselViewport');
 
 let current = Math.floor(slides.length / 2); // start centered
@@ -44,6 +46,9 @@ function goTo(index) {
   current = Math.max(0, Math.min(index, slides.length - 1));
   updateCarousel(true);
 }
+
+prevBtn.addEventListener('click', () => goTo(current - 1));
+nextBtn.addEventListener('click', () => goTo(current + 1));
 
 // Click a slide to center it
 slides.forEach((slide, i) => {
