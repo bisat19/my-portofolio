@@ -1,18 +1,162 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Competition — Abisatya</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Awards — Abisatya</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="css/competition.css">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
 </head>
 <body>
   <main class="page">
-    <h1 class="sec-title">Competition</h1>
-    <!-- Konten kompetisi Anda di sini -->
-  </main>
+    <div class="page">
 
+  <!-- HEADER -->
+  <h2 class="sec-title">Awards &amp; Recognition</h2>
+  <p class="sec-sub">Achievements that have shaped the journey.</p>
+
+  <!-- ===========================
+       AWARDS STAGE
+  =========================== -->
+  <div class="awards-stage" id="stage">
+
+    <!-- Glow orb -->
+    <div class="glow-orb"></div>
+
+    <!-- Hands — replace src with your Google Drive direct image URL -->
+    <!-- Google Drive direct link format:
+         https://drive.google.com/uc?export=view&id=YOUR_FILE_ID
+         Get FILE_ID from the share link: drive.google.com/file/d/FILE_ID/view -->
+    <div class="hands-img" id="handsImg">
+      <img
+        src="https://drive.google.com/uc?export=view&id=YOUR_FILE_ID"
+        alt="Hands"
+        id="handsImgEl"
+        onerror="handleHandsFallback()"
+      >
+    </div>
+
+    <!-- Orbit ring (positions the cards) -->
+    <div class="orbit-ring" id="orbitRing">
+
+      <!-- 5 Award Cards — replace img src and text with your data -->
+      <div class="award-card" id="card0">
+        <div class="award-img-wrap">
+          <img src="" alt="Award 1" onerror="this.style.display='none'">
+          <span class="fallback-icon" style="display:block;font-size:2rem">🏆</span>
+          <div class="award-badge">🥇</div>
+        </div>
+        <div class="award-body">
+          <div class="award-title">1st Place — National Data Science Competition</div>
+          <div class="award-org">Universitas Gadjah Mada</div>
+          <span class="award-year">2024</span>
+        </div>
+      </div>
+
+      <div class="award-card" id="card1">
+        <div class="award-img-wrap">
+          <img src="" alt="Award 2" onerror="this.style.display='none'">
+          <span class="fallback-icon" style="display:block;font-size:2rem">🎖️</span>
+          <div class="award-badge">⭐</div>
+        </div>
+        <div class="award-body">
+          <div class="award-title">Best Paper — ICOIACT Conference</div>
+          <div class="award-org">IEEE Indonesia</div>
+          <span class="award-year">2023</span>
+        </div>
+      </div>
+
+      <div class="award-card" id="card2">
+        <div class="award-img-wrap">
+          <img src="" alt="Award 3" onerror="this.style.display='none'">
+          <span class="fallback-icon" style="display:block;font-size:2rem">💡</span>
+          <div class="award-badge">🏅</div>
+        </div>
+        <div class="award-body">
+          <div class="award-title">Top 10 — GovTech Hackathon</div>
+          <div class="award-org">Kominfo Indonesia</div>
+          <span class="award-year">2024</span>
+        </div>
+      </div>
+
+      <div class="award-card" id="card3">
+        <div class="award-img-wrap">
+          <img src="" alt="Award 4" onerror="this.style.display='none'">
+          <span class="fallback-icon" style="display:block;font-size:2rem">🎗️</span>
+          <div class="award-badge">✨</div>
+        </div>
+        <div class="award-body">
+          <div class="award-title">Dean's List — 4 Consecutive Semesters</div>
+          <div class="award-org">Universitas Diponegoro</div>
+          <span class="award-year">2022–2024</span>
+        </div>
+      </div>
+
+      <div class="award-card" id="card4">
+        <div class="award-img-wrap">
+          <img src="" alt="Award 5" onerror="this.style.display='none'">
+          <span class="fallback-icon" style="display:block;font-size:2rem">🚀</span>
+          <div class="award-badge">🔥</div>
+        </div>
+        <div class="award-body">
+          <div class="award-title">Innovation Award — Startup Weekend</div>
+          <div class="award-org">Techstars Semarang</div>
+          <span class="award-year">2023</span>
+        </div>
+      </div>
+
+    </div><!-- end orbit-ring -->
+
+  </div><!-- end awards-stage -->
+
+</div><!-- end .page -->
+
+
+<!-- ================================
+     MACOS DOCK
+================================ -->
+<div class="dock-footer">
+  <div class="dock">
+    <a href="index.html" class="dock-item">
+      <div class="dock-icon d-home">🏠</div>
+      <div class="dock-label">Home</div>
+      <span class="dock-dot"></span>
+    </a>
+    <a href="experience.html" class="dock-item">
+      <div class="dock-icon d-exp">💼</div>
+      <div class="dock-label">Experience</div>
+      <span class="dock-dot"></span>
+    </a>
+    <a href="education.html" class="dock-item">
+      <div class="dock-icon d-edu">🎓</div>
+      <div class="dock-label">Education</div>
+      <span class="dock-dot"></span>
+    </a>
+    <a href="project.html" class="dock-item">
+      <div class="dock-icon d-proj">🚀</div>
+      <div class="dock-label">Projects</div>
+      <span class="dock-dot"></span>
+    </a>
+    <a href="awards.html" class="dock-item">
+      <div class="dock-icon d-awards">🏆</div>
+      <div class="dock-label">Awards</div>
+      <span class="dock-dot active"></span>
+    </a>
+    <div class="dock-sep"></div>
+    <a href="contact.html" class="dock-item">
+      <div class="dock-icon d-contact">💌</div>
+      <div class="dock-label">Contact</div>
+      <span class="dock-dot"></span>
+    </a>
+  </div>
+</div>
+  </main>
+  
+  <script src="js/competition.js"></script>
   <script src="js/footer.js"></script>
 </body>
 </html>
