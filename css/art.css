@@ -262,20 +262,6 @@ body {
       z-index: 200;
     }
 
-    /* Pin dot on each draggable */
-    .draggable::before {
-      content: '';
-      position: absolute;
-      top: -10px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 14px; height: 14px;
-      border-radius: 50%;
-      background: radial-gradient(circle at 35% 35%, #ff6b6b, #c0392b);
-      box-shadow: 0 2px 6px rgba(0,0,0,0.4), inset 0 1px 2px rgba(255,255,255,0.3);
-      z-index: 2;
-    }
-
     /* Circle draggable */
     .drag-circle {
       border-radius: 50%;
@@ -298,8 +284,7 @@ body {
       width: 100%; height: 100%;
       object-fit: cover;
       border-radius: inherit;
-      opacity: 0.9;
-      display: none; /* shown when src is set */
+      opacity: 1;
     }
 
     /* Inner reflection */
@@ -314,39 +299,6 @@ body {
     }
 
     /* ===========================
-       TITLE STICKY NOTE
-    =========================== */
-    .sticky-title {
-      position: fixed;
-      top: 32px;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 10;
-      background: #fef9c3;
-      padding: 10px 28px 14px;
-      border-radius: 3px;
-      box-shadow: 3px 5px 14px rgba(0,0,0,0.22), inset 0 -2px 4px rgba(0,0,0,0.06);
-      font-family: 'Caveat', cursive;
-      font-size: 1.6rem;
-      font-weight: 700;
-      color: #3a2a0a;
-      text-align: center;
-      white-space: nowrap;
-      cursor: grab;
-    }
-
-    .sticky-title::before {
-      content: '';
-      position: absolute;
-      top: -10px; left: 50%;
-      transform: translateX(-50%);
-      width: 14px; height: 14px;
-      border-radius: 50%;
-      background: radial-gradient(circle at 35% 35%, #ff6b6b, #c0392b);
-      box-shadow: 0 2px 6px rgba(0,0,0,0.4);
-    }
-
-    /* ===========================
        CAROUSEL SECTION
     =========================== */
     .carousel-section {
@@ -358,7 +310,7 @@ body {
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 100px 0 20px;
+      padding: 40px 0 120px; /* Menambah padding bawah agar di atas dock */
     }
 
     /* The visible window */
@@ -407,7 +359,7 @@ body {
     /* Individual slide — paper/canvas texture */
     .art-slide {
       flex-shrink: 0;
-      width: 320px;
+      width: 240px; /* Ukuran diperkecil agar seperti poster */
       background: #ece9e1;
       border-radius: 4px;
       box-shadow:
@@ -491,7 +443,20 @@ body {
 
     /* Caption under image */
     .slide-caption {
-      padding: 14px 16px 18px;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 12px;
+      opacity: 0; /* Sembunyikan tulisan secara default */
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    .art-slide:hover .slide-caption {
+      opacity: 1; /* Munculkan saat hover */
     }
 
     .slide-title {
