@@ -3,13 +3,15 @@
 ============================================ */
 const track      = document.getElementById('carouselTrack');
 const slides     = Array.from(track.querySelectorAll('.art-slide'));
+const prevBtn    = document.getElementById('prevBtn');
+const nextBtn    = document.getElementById('nextBtn');
 const viewport   = document.getElementById('carouselViewport');
 
 let current = Math.floor(slides.length / 2); // start centered
 
 function getSlideW() {
-  const gap = 30; // Sesuaikan dengan CSS gap
-  return (slides[0]?.offsetWidth || 200) + gap;
+  const gap = 30;
+  return (slides[0]?.offsetWidth || 320) + gap;
 }
 
 function getViewportCenter() {
@@ -44,6 +46,9 @@ function goTo(index) {
   current = Math.max(0, Math.min(index, slides.length - 1));
   updateCarousel(true);
 }
+
+prevBtn.addEventListener('click', () => goTo(current - 1));
+nextBtn.addEventListener('click', () => goTo(current + 1));
 
 // Click a slide to center it
 slides.forEach((slide, i) => {
@@ -159,8 +164,8 @@ function makeDraggable(el) {
   el.addEventListener('touchend', onMouseUp);
 }
 
-// Make all draggable elements draggable
-document.querySelectorAll('.draggable').forEach(makeDraggable);
+// Make all draggable elements draggable (including sticky title)
+document.querySelectorAll('.draggable, .sticky-title').forEach(makeDraggable);
 
 
 /* ============================================

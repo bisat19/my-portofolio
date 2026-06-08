@@ -16,6 +16,11 @@
 <div class="page-content">
 
   <!-- ============================
+       STICKY TITLE
+  ============================ -->
+  <div class="sticky-title" id="stickyTitle">🎨 Art Gallery</div>
+
+  <!-- ============================
        DRAGGABLE OBJECTS
        (Blue items from mockup)
   ============================ -->
@@ -24,35 +29,31 @@
   <div class="draggable drag-circle" id="d1"
        style="width:90px;height:90px;top:60px;left:40px"
        title="Drag me!">
-    <img src="" alt="" onerror="this.style.display='none'">
+    <!-- Place an image inside if desired -->
   </div>
 
   <!-- Top-left: square -->
   <div class="draggable drag-square" id="d2"
        style="width:110px;height:110px;top:48px;left:148px"
        title="Drag me!">
-    <img src="" alt="" onerror="this.style.display='none'">
   </div>
 
   <!-- Top-right: square -->
   <div class="draggable drag-square" id="d3"
        style="width:120px;height:110px;top:48px;right:40px;left:auto"
        title="Drag me!">
-    <img src="" alt="" onerror="this.style.display='none'">
   </div>
 
   <!-- Bottom-right: circle 1 -->
   <div class="draggable drag-circle" id="d4"
        style="width:100px;height:100px;bottom:130px;right:160px;left:auto;top:auto"
        title="Drag me!">
-    <img src="" alt="" onerror="this.style.display='none'">
   </div>
 
   <!-- Bottom-right: circle 2 -->
   <div class="draggable drag-circle" id="d5"
        style="width:100px;height:100px;bottom:130px;right:44px;left:auto;top:auto"
        title="Drag me!">
-    <img src="" alt="" onerror="this.style.display='none'">
   </div>
 
   <!-- ============================
@@ -66,7 +67,8 @@
         <div class="art-slide">
           <div class="slide-img-wrap">
             <!-- Replace src with your art image -->
-            <img src="" alt="Artwork 1">
+            <img src="" alt="Artwork 1" onerror="this.style.display='none'">
+            <span class="slide-placeholder">🖼️</span>
           </div>
           <div class="slide-caption">
             <div class="slide-title">Untitled No. 1</div>
@@ -76,7 +78,8 @@
 
         <div class="art-slide">
           <div class="slide-img-wrap">
-            <img src="" alt="Artwork 2">
+            <img src="" alt="Artwork 2" onerror="this.style.display='none'">
+            <span class="slide-placeholder">🎨</span>
           </div>
           <div class="slide-caption">
             <div class="slide-title">Golden Hour Study</div>
@@ -86,7 +89,8 @@
 
         <div class="art-slide">
           <div class="slide-img-wrap">
-            <img src="" alt="Artwork 3">
+            <img src="" alt="Artwork 3" onerror="this.style.display='none'">
+            <span class="slide-placeholder">✏️</span>
           </div>
           <div class="slide-caption">
             <div class="slide-title">Figure Study III</div>
@@ -96,7 +100,7 @@
 
         <div class="art-slide">
           <div class="slide-img-wrap">
-            <img src="" alt="Artwork 4">
+            <img src="" alt="Artwork 4" onerror="this.style.display='none'">
           </div>
           <div class="slide-caption">
             <div class="slide-title">Abstract Composition</div>
@@ -106,7 +110,8 @@
 
         <div class="art-slide">
           <div class="slide-img-wrap">
-            <img src="" alt="Artwork 5">
+            <img src="" alt="Artwork 5" onerror="this.style.display='none'">
+            <span class="slide-placeholder">🌿</span>
           </div>
           <div class="slide-caption">
             <div class="slide-title">Nature Series II</div>
@@ -116,7 +121,8 @@
 
         <div class="art-slide">
           <div class="slide-img-wrap">
-            <img src="" alt="Artwork 6">
+            <img src="" alt="Artwork 6" onerror="this.style.display='none'">
+            <span class="slide-placeholder">🌙</span>
           </div>
           <div class="slide-caption">
             <div class="slide-title">Night Sketch</div>
@@ -126,7 +132,8 @@
 
         <div class="art-slide">
           <div class="slide-img-wrap">
-            <img src="" alt="Artwork 7">
+            <img src="" alt="Artwork 7" onerror="this.style.display='none'">
+            <span class="slide-placeholder">🏙️</span>
           </div>
           <div class="slide-caption">
             <div class="slide-title">Urban Landscape</div>
@@ -135,6 +142,12 @@
         </div>
 
       </div>
+    </div>
+
+    <!-- Arrow navigation -->
+    <div class="carousel-arrows">
+      <button class="arr-btn" id="prevBtn" aria-label="Previous">&#8592;</button>
+      <button class="arr-btn" id="nextBtn" aria-label="Next">&#8594;</button>
     </div>
 
   </section>
