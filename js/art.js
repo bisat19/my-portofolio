@@ -9,7 +9,7 @@ let current = Math.floor(slides.length / 2); // start centered
 
 function getSlideW() {
   const gap = 30; // Sesuaikan dengan CSS gap
-  return (slides[0]?.offsetWidth || 150) + gap;
+  return (slides[0]?.offsetWidth || 200) + gap;
 }
 
 function getViewportCenter() {
@@ -87,8 +87,9 @@ function makeDraggable(el) {
 
   // Normalize position to use left/top (convert right/bottom)
   function normalizePosition() {
+    el.style.transition = 'none';
     const rect = el.getBoundingClientRect();
-    el.style.left   = rect.left + 'px';
+    el.style.left   = rect.left + 'px'; 
     el.style.top    = rect.top + 'px';
     el.style.right  = 'auto';
     el.style.bottom = 'auto';
@@ -99,13 +100,12 @@ function makeDraggable(el) {
     isDragging = true;
     startX = cx;
     startY = cy;
-    origLeft = parseFloat(el.style.left);
-    origTop  = parseFloat(el.style.top);
+    origLeft = parseFloat(el.style.left) || 0;
+    origTop  = parseFloat(el.style.top) || 0;
     el.classList.add('dragging');
-    el.style.transition = 'none';
     
-    document.addEventListener('mousemove', onMouseMove);
-    document.addEventListener('mouseup', onMouseUp);
+    window.addEventListener('mousemove', onMouseMove);
+    window.addEventListener('mouseup', onMouseUp);
   }
 
   function onMouseMove(e) {
@@ -121,8 +121,8 @@ function makeDraggable(el) {
     el.classList.remove('dragging');
     el.style.transition = '';
     
-    document.removeEventListener('mousemove', onMouseMove);
-    document.removeEventListener('mouseup', onMouseUp);
+    window.removeEventListener('mousemove', onMouseMove);
+    window.removeEventListener('mouseup', onMouseUp);
 
     // Soft bounce if out of screen
     const rect = el.getBoundingClientRect();

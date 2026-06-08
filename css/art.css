@@ -361,7 +361,7 @@ body {
     /* Individual slide — paper/canvas texture */
     .art-slide {
       flex-shrink: 0;
-      width: 150px; /* Ukuran lebih kecil untuk layout poster */
+      width: 200px; /* Diperbesar sedikit sesuai permintaan */
       aspect-ratio: 2 / 3;
       background: #ece9e1;
       border-radius: 4px;
@@ -485,7 +485,7 @@ body {
        RESPONSIVE
     =========================== */
     @media (max-width: 680px) {
-      .art-slide { width: 240px; }
+      .art-slide { width: 160px; }
       .sticky-title { font-size: 1.2rem; padding: 8px 18px 11px; top: 20px; }
       .drag-circle, .drag-square { transform: scale(0.75) !important; }
       .dock-icon { width: 44px; height: 44px; font-size: 1.2rem; border-radius: 12px; }
