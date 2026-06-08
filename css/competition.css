@@ -1,37 +1,3 @@
-:root {
-  --bg: #f5f4f0;
-  --text: #1a1a1a;
-  --accent: #4a90d9;
-}
-
-body {
-  font-family: 'Poppins', sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  padding-bottom: 110px;
-}
-
-.page {
-  max-width: 1040px;
-  margin: 0 auto;
-  padding: 56px 28px 0;
-}
-
-.sec-title {
-  font-weight: 700;
-  font-size: 2.2rem;
-  margin-bottom: 32px;
-}
-
-.sec-title::after {
-  content: '';
-  display: block;
-  width: 40px; height: 4px;
-  background: var(--accent);
-  border-radius: 2px;
-  margin-top: 7px;
-}
-
 /* ===========================
        MACOS DOCK
     =========================== */
@@ -161,7 +127,7 @@ body {
       --text:       #1a1a1a;
       --muted:      #7a7a7a;
       --accent:     #4a90d9;
-      --accent-lt:  #daeaf8;
+      --accent-lt:  rgba(74, 144, 217, 0.2);
       --glow:       #f5f0c0;
       --glow2:      #ffe97a;
       --r-md: 20px;
@@ -199,13 +165,19 @@ body {
       color: var(--text);
       margin-bottom: 8px;
     }
+    .sec-header {
+      text-align: center;
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 10;
+    }
     .sec-title::after {
       content: '';
       display: block;
       width: 40px; height: 4px;
+      margin: 7px auto 0;
       background: var(--accent);
       border-radius: 2px;
-      margin-top: 7px;
     }
     .sec-sub {
       font-size: 0.88rem;
@@ -225,7 +197,7 @@ body {
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-top: 24px;
+      margin-top: -20px;
     }
 
     /* ---- Glow orb behind hands ---- */
@@ -261,7 +233,7 @@ body {
       position: absolute;
       top: 50%;
       left: 50%;
-      transform: translate(-50%, -44%);
+      transform: translate(-50%, -52%);
       width: 480px;
       max-width: 90vw;
       z-index: 2;
@@ -281,8 +253,8 @@ body {
     }
 
     @keyframes handsEntrance {
-      from { opacity: 0; transform: translate(-50%, -38%); }
-      to   { opacity: 1; transform: translate(-50%, -44%); }
+      from { opacity: 0; transform: translate(-50%, -46%); }
+      to   { opacity: 1; transform: translate(-50%, -52%); }
     }
 
     /* ===========================
@@ -318,7 +290,7 @@ body {
       position: absolute;
       top: 50%;
       left: 50%;
-      width: 220px;
+      width: 200px;
       aspect-ratio: 16/10;
       /* card translate: orbit radius px from center */
       --orbit-r: 260px;
@@ -331,8 +303,8 @@ body {
         translateX(var(--orbit-r))
         rotate(calc(-1 * var(--spin-angle, var(--angle))));
 
-      background: #ebebeb;
-      border-radius: var(--r-lg);
+      background: #fff;
+      border-radius: var(--r-md);
       overflow: hidden;
       box-shadow:
         0 4px 16px rgba(0,0,0,0.10),
@@ -379,14 +351,15 @@ body {
       justify-content: center;
       font-size: 0.85rem;
       box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+      z-index: 5;
     }
 
     .award-body {
       position: absolute;
       inset: 0;
-      background: rgba(0, 0, 0, 0.75);
+      background: rgba(0, 0, 0, 0.78);
       color: #fff;
-      padding: 16px;
+      padding: 12px;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -394,7 +367,7 @@ body {
       text-align: center;
       opacity: 0;
       transition: opacity 0.3s ease;
-      backdrop-filter: blur(4px);
+      backdrop-filter: blur(3px);
     }
 
     .award-card:hover .award-body {
@@ -402,7 +375,7 @@ body {
     }
 
     .award-title {
-      font-size: 0.85rem;
+      font-size: 0.78rem;
       font-weight: 700;
       line-height: 1.3;
       color: #fff;
@@ -410,14 +383,14 @@ body {
     }
 
     .award-org {
-      font-size: 0.7rem;
+      font-size: 0.65rem;
       color: rgba(255, 255, 255, 0.8);
     }
 
     .award-year {
       display: inline-block;
-      margin-top: 7px;
-      font-size: 0.62rem;
+      margin-top: 6px;
+      font-size: 0.58rem;
       font-weight: 600;
       letter-spacing: 0.06em;
       text-transform: uppercase;
