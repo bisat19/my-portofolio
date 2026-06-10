@@ -217,13 +217,12 @@ body {
         );
     }
 
-    /* If user provides Google Drive bg image, uncomment and set id:
     body {
-      background-image: url("https://drive.google.com/uc?export=view&id=YOUR_BG_ID") !important;
+      background-image: url("https://drive.google.com/uc?export=view&id=1990k5jSWf16BKOkVj_fS1okP92rekC4I") !important;
       background-size: cover;
       background-position: center;
     }
-    */
+    
 
     /* ===========================
        EVERYTHING ABOVE THE CORK
