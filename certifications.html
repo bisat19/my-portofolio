@@ -8,10 +8,209 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <main class="page">
-    <h1 class="sec-title">Certifications</h1>
-    <!-- Konten sertifikasi Anda di sini -->
-  </main>
+  
+<div class="layout">
+
+  <!-- ============================
+       LEFT — Folder + Click Me
+  ============================ -->
+  <div class="left-panel">
+
+    <div class="folder-wrap" id="folderWrap" title="Click to open">
+
+      <!-- Documents peeking out -->
+      <div class="doc-stack">
+        <div class="doc doc1"></div>
+        <div class="doc doc2"></div>
+        <div class="doc doc3"></div>
+      </div>
+
+      <!-- Folder body -->
+      <div class="folder-body">
+        <div class="folder-tab"></div>
+        <div class="folder-gloss"></div>
+      </div>
+
+      <!-- Shadow -->
+      <div class="folder-shadow"></div>
+    </div>
+
+    <!-- "Click Me!" — disappears after click -->
+    <div class="click-label" id="clickLabel">Click Me!</div>
+
+    <!-- Replaces click-me after open -->
+    <div class="cert-title" id="certTitle">
+      Certifications
+      <span class="cert-count" id="certCount">7 certificates</span>
+    </div>
+
+  </div>
+
+  <!-- ============================
+       RIGHT — Certificate grid
+  ============================ -->
+  <div class="right-panel" id="rightPanel">
+    <div class="cert-grid" id="certGrid">
+
+      <!-- CARD 1 -->
+      <div class="cert-card" id="cert0">
+        <div class="cert-img-wrap">
+          <!-- Replace src with your certificate image -->
+          <img src="" alt="Certificate 1" onerror="this.style.display='none'">
+          <div class="cert-placeholder">📜</div>
+          <div class="cert-ribbon">Google</div>
+        </div>
+        <div class="cert-body">
+          <div class="cert-name">Google Data Analytics Professional Certificate</div>
+          <div class="cert-issuer">Google · Coursera</div>
+          <div class="cert-footer">
+            <span class="cert-year">2024</span>
+            <a class="cert-verify" href="#" target="_blank">
+              Verify
+              <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M2 8L8 2M4 2h4v4"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD 2 -->
+      <div class="cert-card" id="cert1">
+        <div class="cert-img-wrap">
+          <img src="" alt="Certificate 2" onerror="this.style.display='none'">
+          <div class="cert-placeholder">🤖</div>
+          <div class="cert-ribbon">DeepLearning.AI</div>
+        </div>
+        <div class="cert-body">
+          <div class="cert-name">Machine Learning Specialization</div>
+          <div class="cert-issuer">DeepLearning.AI · Coursera</div>
+          <div class="cert-footer">
+            <span class="cert-year">2023</span>
+            <a class="cert-verify" href="#" target="_blank">
+              Verify
+              <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M2 8L8 2M4 2h4v4"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD 3 -->
+      <div class="cert-card" id="cert2">
+        <div class="cert-img-wrap">
+          <img src="" alt="Certificate 3" onerror="this.style.display='none'">
+          <div class="cert-placeholder">📊</div>
+          <div class="cert-ribbon">Microsoft</div>
+        </div>
+        <div class="cert-body">
+          <div class="cert-name">Microsoft Power BI Data Analyst Associate</div>
+          <div class="cert-issuer">Microsoft</div>
+          <div class="cert-footer">
+            <span class="cert-year">2024</span>
+            <a class="cert-verify" href="#" target="_blank">
+              Verify
+              <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M2 8L8 2M4 2h4v4"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD 4 -->
+      <div class="cert-card" id="cert3">
+        <div class="cert-img-wrap">
+          <img src="" alt="Certificate 4" onerror="this.style.display='none'">
+          <div class="cert-placeholder">☁️</div>
+          <div class="cert-ribbon">AWS</div>
+        </div>
+        <div class="cert-body">
+          <div class="cert-name">AWS Cloud Practitioner Essentials</div>
+          <div class="cert-issuer">Amazon Web Services</div>
+          <div class="cert-footer">
+            <span class="cert-year">2023</span>
+            <a class="cert-verify" href="#" target="_blank">
+              Verify
+              <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M2 8L8 2M4 2h4v4"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD 5 -->
+      <div class="cert-card" id="cert4">
+        <div class="cert-img-wrap">
+          <img src="" alt="Certificate 5" onerror="this.style.display='none'">
+          <div class="cert-placeholder">🐍</div>
+          <div class="cert-ribbon">DataCamp</div>
+        </div>
+        <div class="cert-body">
+          <div class="cert-name">Python for Data Science & AI</div>
+          <div class="cert-issuer">DataCamp</div>
+          <div class="cert-footer">
+            <span class="cert-year">2022</span>
+            <a class="cert-verify" href="#" target="_blank">
+              Verify
+              <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M2 8L8 2M4 2h4v4"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD 6 -->
+      <div class="cert-card" id="cert5">
+        <div class="cert-img-wrap">
+          <img src="" alt="Certificate 6" onerror="this.style.display='none'">
+          <div class="cert-placeholder">🌐</div>
+          <div class="cert-ribbon">Meta</div>
+        </div>
+        <div class="cert-body">
+          <div class="cert-name">Meta Front-End Developer Certificate</div>
+          <div class="cert-issuer">Meta · Coursera</div>
+          <div class="cert-footer">
+            <span class="cert-year">2023</span>
+            <a class="cert-verify" href="#" target="_blank">
+              Verify
+              <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M2 8L8 2M4 2h4v4"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD 7 -->
+      <div class="cert-card" id="cert6">
+        <div class="cert-img-wrap">
+          <img src="" alt="Certificate 7" onerror="this.style.display='none'">
+          <div class="cert-placeholder">🔬</div>
+          <div class="cert-ribbon">IBM</div>
+        </div>
+        <div class="cert-body">
+          <div class="cert-name">IBM Data Science Professional Certificate</div>
+          <div class="cert-issuer">IBM · Coursera</div>
+          <div class="cert-footer">
+            <span class="cert-year">2024</span>
+            <a class="cert-verify" href="#" target="_blank">
+              Verify
+              <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M2 8L8 2M4 2h4v4"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div><!-- end layout -->
 
   <!-- Footer akan dimuat secara dinamis oleh footer.js -->
   <script src="js/footer.js"></script>

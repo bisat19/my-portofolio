@@ -153,4 +153,362 @@ body {
     .competition-icon    { background: linear-gradient(145deg, #b37be8, #8f52d0); }
     .art-icon            { background: linear-gradient(145deg, #f07ca0, #d44f7c); }  */
 
-    
+  
+    /* ===========================
+       ROOT & RESET
+    =========================== */
+    :root {
+      --bg:        #f2f2f5;
+      --bg2:       #eaeaee;
+      --card:      #ffffff;
+      --text:      #1a1a1a;
+      --muted:     #888;
+      --accent:    #4a90d9;
+      --accent-lt: #daeaf8;
+      --r: 20px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { height: 100%; }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ===========================
+       LAYOUT — two-column
+    =========================== */
+    .layout {
+      display: grid;
+      grid-template-columns: 380px 1fr;
+      min-height: 100vh;
+    }
+
+    /* ===========================
+       LEFT PANEL — folder + click me
+    =========================== */
+    .left-panel {
+      background: linear-gradient(160deg, #f8f8fb 0%, #ecedf2 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 48px 32px;
+      position: relative;
+      border-right: 1px solid rgba(0,0,0,0.06);
+    }
+
+    /* ---- 3D macOS-style folder ---- */
+    .folder-wrap {
+      position: relative;
+      width: 240px;
+      cursor: pointer;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .folder-wrap:hover .folder-body { transform: translateY(-6px) scale(1.02); }
+    .folder-wrap:hover .folder-shadow { transform: translateX(-50%) scaleX(1.08); opacity: 0.55; }
+    .folder-wrap:hover .doc1 { transform: translateY(-14px) rotate(-8deg); }
+    .folder-wrap:hover .doc2 { transform: translateY(-10px) rotate(4deg); }
+    .folder-wrap:hover .doc3 { transform: translateY(-7px) rotate(-1deg); }
+    .folder-wrap:active .folder-body { transform: translateY(-2px) scale(0.99); }
+
+    /* The glossy dark folder body */
+    .folder-body {
+      width: 240px;
+      height: 210px;
+      border-radius: 22px;
+      background:
+        linear-gradient(175deg,
+          rgba(255,255,255,0.18) 0%,
+          rgba(255,255,255,0.04) 30%,
+          rgba(0,0,0,0.0) 60%,
+          rgba(0,0,0,0.22) 100%
+        ),
+        linear-gradient(160deg, #3a3a3a 0%, #1c1c1c 55%, #111 100%);
+      box-shadow:
+        0 2px 0  rgba(255,255,255,0.12) inset,
+        0 -2px 0 rgba(0,0,0,0.35) inset,
+        0 28px 56px rgba(0,0,0,0.38),
+        0 8px 20px rgba(0,0,0,0.28);
+      position: relative;
+      overflow: visible;
+      transition: transform 0.32s cubic-bezier(0.34,1.56,0.64,1),
+                  box-shadow 0.32s ease;
+      z-index: 2;
+    }
+
+    /* Tab on folder */
+    .folder-tab {
+      position: absolute;
+      top: -16px; left: 20px;
+      width: 80px; height: 20px;
+      border-radius: 8px 8px 0 0;
+      background: linear-gradient(180deg, #2a2a2a, #1c1c1c);
+      box-shadow: 0 -2px 6px rgba(0,0,0,0.25);
+    }
+
+    /* Glossy reflection stripe */
+    .folder-gloss {
+      position: absolute;
+      top: 10px; left: 10px; right: 10px;
+      height: 50px;
+      border-radius: 14px 14px 60% 60%;
+      background: linear-gradient(180deg,
+        rgba(255,255,255,0.18) 0%,
+        rgba(255,255,255,0.04) 100%);
+      pointer-events: none;
+    }
+
+    /* Document pages sticking out */
+    .doc-stack {
+      position: absolute;
+      top: -28px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 160px;
+      height: 90px;
+      z-index: 3;
+    }
+
+    .doc {
+      position: absolute;
+      bottom: 0;
+      width: 100px;
+      height: 80px;
+      background: linear-gradient(170deg, #ffffff, #e8e8e8);
+      border-radius: 10px 10px 4px 4px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.2);
+      transition: transform 0.32s cubic-bezier(0.34,1.56,0.64,1);
+    }
+
+    /* Lines on each document */
+    .doc::after {
+      content: '';
+      position: absolute;
+      top: 16px; left: 10px;
+      width: 70%;
+      height: 2px;
+      background: rgba(0,0,0,0.12);
+      box-shadow: 0 8px 0 rgba(0,0,0,0.10), 0 16px 0 rgba(0,0,0,0.08);
+      border-radius: 1px;
+    }
+
+    .doc1 { left: 0;   transform: rotate(-10deg); z-index: 1; }
+    .doc2 { right: 0;  transform: rotate(6deg);  z-index: 2; }
+    .doc3 { left: 50%; transform: translateX(-50%) rotate(-2deg); z-index: 3; }
+
+    /* Soft elliptical shadow under folder */
+    .folder-shadow {
+      position: absolute;
+      bottom: -18px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 200px; height: 28px;
+      border-radius: 50%;
+      background: rgba(0,0,0,0.22);
+      filter: blur(12px);
+      transition: transform 0.32s ease, opacity 0.32s ease;
+      opacity: 0.38;
+    }
+
+    /* ---- Click Me label ---- */
+    .click-label {
+      margin-top: 36px;
+      font-size: 1.35rem;
+      font-weight: 600;
+      color: var(--text);
+      letter-spacing: -0.01em;
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+
+    .click-label.hidden {
+      opacity: 0;
+      transform: translateY(8px);
+      pointer-events: none;
+    }
+
+    /* ---- Section title that replaces click-me ---- */
+    .cert-title {
+      margin-top: 36px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--text);
+      text-align: center;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 0.4s ease 0.2s, transform 0.4s ease 0.2s;
+      pointer-events: none;
+    }
+
+    .cert-title.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .cert-count {
+      display: block;
+      font-size: 0.75rem;
+      font-weight: 400;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    /* ===========================
+       RIGHT PANEL — certificates
+    =========================== */
+    .right-panel {
+      padding: 52px 40px 52px 48px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    /* Grid */
+    .cert-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 22px;
+    }
+
+    /* Certificate card */
+    .cert-card {
+      background: var(--card);
+      border-radius: var(--r);
+      overflow: hidden;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.07), 0 1px 3px rgba(0,0,0,0.05);
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+      position: relative;
+
+      /* Hidden initially */
+      opacity: 0;
+      transform: translateY(22px) scale(0.97);
+      transition:
+        opacity 0.45s ease,
+        transform 0.45s cubic-bezier(0.34,1.56,0.64,1),
+        box-shadow 0.25s ease;
+    }
+
+    .cert-card.revealed {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    .cert-card:hover {
+      box-shadow: 0 10px 32px rgba(0,0,0,0.14), 0 2px 8px rgba(0,0,0,0.08);
+      transform: translateY(-4px) scale(1.01);
+    }
+
+    /* Image slot */
+    .cert-img-wrap {
+      width: 100%;
+      aspect-ratio: 16/10;
+      background: #e8e8ec;
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .cert-img-wrap img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.35s ease;
+    }
+
+    .cert-card:hover .cert-img-wrap img { transform: scale(1.04); }
+
+    /* Placeholder when no img */
+    .cert-placeholder {
+      font-size: 2.5rem;
+      opacity: 0.22;
+    }
+
+    /* Ribbon tag top-right */
+    .cert-ribbon {
+      position: absolute;
+      top: 12px; right: 12px;
+      background: rgba(255,255,255,0.82);
+      backdrop-filter: blur(6px);
+      border-radius: 8px;
+      padding: 4px 10px;
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--accent);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    /* Card body */
+    .cert-body {
+      padding: 14px 18px 18px;
+    }
+
+    .cert-name {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.35;
+      margin-bottom: 4px;
+    }
+
+    .cert-issuer {
+      font-size: 0.72rem;
+      color: var(--muted);
+    }
+
+    .cert-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 10px;
+    }
+
+    .cert-year {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: var(--accent-lt);
+      padding: 3px 9px;
+      border-radius: 20px;
+    }
+
+    .cert-verify {
+      font-size: 0.65rem;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .cert-verify:hover { color: var(--accent); }
+    .cert-verify svg { width: 10px; height: 10px; }
+
+    /* ===========================
+       RESPONSIVE
+    =========================== */
+    @media (max-width: 900px) {
+      .layout { grid-template-columns: 1fr; }
+      .left-panel { padding: 52px 32px 36px; border-right: none; border-bottom: 1px solid rgba(0,0,0,0.06); }
+      .right-panel { padding: 36px 24px 52px; }
+    }
+
+    @media (max-width: 560px) {
+      .cert-grid { grid-template-columns: 1fr; }
+      .folder-wrap, .folder-body { width: 200px; }
+      .folder-body { height: 175px; }
+    }
+  
