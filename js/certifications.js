@@ -8,7 +8,7 @@ const cards      = document.querySelectorAll('.cert-card');
 
 let opened = false;
 
-folder.addEventListener('click', () => {
+function openFolder() {
   if (opened) return;
   opened = true;
 
@@ -34,7 +34,11 @@ folder.addEventListener('click', () => {
   // Change cursor
   folder.style.cursor = 'default';
   folder.title = '';
-});
+  clickLabel.style.cursor = 'default';
+}
+
+folder.addEventListener('click', openFolder);
+clickLabel.addEventListener('click', openFolder);
 
 /* ============================================
    CARD LIGHTBOX — click to see full cert

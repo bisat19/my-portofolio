@@ -15,35 +15,37 @@
        LEFT — Folder + Click Me
   ============================ -->
   <div class="left-panel">
+    <div class="folder-container">
 
-    <div class="folder-wrap" id="folderWrap" title="Click to open">
+      <div class="folder-wrap" id="folderWrap" title="Click to open">
 
-      <!-- Documents peeking out -->
-      <div class="doc-stack">
-        <div class="doc doc1"></div>
-        <div class="doc doc2"></div>
-        <div class="doc doc3"></div>
+        <!-- Documents peeking out -->
+        <div class="doc-stack">
+          <div class="doc doc1"></div>
+          <div class="doc doc2"></div>
+          <div class="doc doc3"></div>
+        </div>
+
+        <!-- Folder body -->
+        <div class="folder-body">
+          <div class="folder-tab"></div>
+          <div class="folder-gloss"></div>
+        </div>
+
+        <!-- Shadow -->
+        <div class="folder-shadow"></div>
       </div>
 
-      <!-- Folder body -->
-      <div class="folder-body">
-        <div class="folder-tab"></div>
-        <div class="folder-gloss"></div>
+      <!-- "Click Me!" — disappears after click -->
+      <div class="click-label" id="clickLabel">Click Me!</div>
+
+      <!-- Replaces click-me after open -->
+      <div class="cert-title" id="certTitle">
+        Certifications
+        <span class="cert-count" id="certCount">7 certificates</span>
       </div>
 
-      <!-- Shadow -->
-      <div class="folder-shadow"></div>
     </div>
-
-    <!-- "Click Me!" — disappears after click -->
-    <div class="click-label" id="clickLabel">Click Me!</div>
-
-    <!-- Replaces click-me after open -->
-    <div class="cert-title" id="certTitle">
-      Certifications
-      <span class="cert-count" id="certCount">7 certificates</span>
-    </div>
-
   </div>
 
   <!-- ============================
@@ -212,6 +214,7 @@
 
 </div><!-- end layout -->
 
+  <script src="js/certifications.js"></script>
   <!-- Footer akan dimuat secara dinamis oleh footer.js -->
   <script src="js/footer.js"></script>
 </body>

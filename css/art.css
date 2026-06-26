@@ -343,7 +343,7 @@ body {
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 100px 0 20px;
+      padding: 60px 0 130px;
     }
 
     /* The visible window */
@@ -477,6 +477,14 @@ body {
     /* Caption under image */
     .slide-caption {
       padding: 14px 16px 18px;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .art-slide.active .slide-caption {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .slide-title {

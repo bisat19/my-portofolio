@@ -195,11 +195,18 @@ body {
       background: linear-gradient(160deg, #f8f8fb 0%, #ecedf2 100%);
       display: flex;
       flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 48px 32px;
+      align-items: flex-start;
+      justify-content: flex-start;
+      padding: 60px 40px;
       position: relative;
       border-right: 1px solid rgba(0,0,0,0.06);
+    }
+
+    .folder-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: fit-content;
     }
 
     /* ---- 3D macOS-style folder ---- */
@@ -325,6 +332,7 @@ body {
       color: var(--text);
       letter-spacing: -0.01em;
       transition: opacity 0.4s ease, transform 0.4s ease;
+      cursor: pointer;
     }
 
     .click-label.hidden {
@@ -500,11 +508,17 @@ body {
     /* ===========================
        RESPONSIVE
     =========================== */
-    @media (max-width: 900px) {
-      .layout { grid-template-columns: 1fr; }
-      .left-panel { padding: 52px 32px 36px; border-right: none; border-bottom: 1px solid rgba(0,0,0,0.06); }
-      .right-panel { padding: 36px 24px 52px; }
-    }
+     @media (max-width: 900px) {
+       .layout { grid-template-columns: 1fr; }
+       .left-panel {
+         padding: 52px 32px 36px;
+         border-right: none;
+         border-bottom: 1px solid rgba(0,0,0,0.06);
+         align-items: center;
+         justify-content: center;
+       }
+       .right-panel { padding: 36px 24px 52px; }
+     }
 
     @media (max-width: 560px) {
       .cert-grid { grid-template-columns: 1fr; }
