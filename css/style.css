@@ -946,22 +946,6 @@ body {
       margin-top: 2px;
     }
 
-    /* Snake connector between rows */
-    .tl-snake {
-      width: 100%;
-      height: 120px;
-      position: relative;
-      margin: -45px 0; /* Menarik baris agar kurva bertemu dengan bar horizontal */
-      z-index: 1;
-      pointer-events: none;
-    }
-
-    .tl-snake svg {
-      width: 100%;
-      height: 100%;
-      display: block;
-    }
-
     /* Menyesuaikan bar agar sejajar dengan dot */
     .tl-bar {
       left: calc(100% / 6);
@@ -981,7 +965,6 @@ body {
       }
 
       .tl-bar { display: none; }
-      .tl-snake { display: none; }
 
       .tl-col {
         flex-direction: row;
