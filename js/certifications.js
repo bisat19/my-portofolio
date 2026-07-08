@@ -87,14 +87,63 @@ Object.assign(overlayClose.style, {
 overlayClose.textContent = '×';
 overlayClose.addEventListener('mouseenter', () => overlayClose.style.background = 'rgba(255,255,255,0.28)');
 overlayClose.addEventListener('mouseleave', () => overlayClose.style.background = 'rgba(255,255,255,0.15)');
+// Create View PDF button for overlay
+const overlayPdfBtn = document.createElement('a');
+overlayPdfBtn.target = '_blank';
+overlayPdfBtn.innerHTML = `
+  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px;">
+    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+    <polyline points="14 2 14 8 20 8"></polyline>
+    <line x1="16" y1="13" x2="8" y2="13"></line>
+    <line x1="16" y1="17" x2="8" y2="17"></line>
+    <polyline points="10 9 9 9 8 9"></polyline>
+  </svg>View PDF Version
+`;
+Object.assign(overlayPdfBtn.style, {
+  position: 'fixed',
+  bottom: '40px',
+  left: '50%',
+  transform: 'translateX(-50%)',
+  padding: '12px 24px',
+  borderRadius: '30px',
+  background: '#4a90d9',
+  color: '#ffffff',
+  textDecoration: 'none',
+  fontSize: '0.9rem',
+  fontWeight: '600',
+  boxShadow: '0 8px 24px rgba(74, 144, 217, 0.4)',
+  transition: 'background 0.2s, transform 0.2s, box-shadow 0.2s',
+  zIndex: '1001',
+  fontFamily: 'inherit',
+  display: 'inline-flex',
+  alignItems: 'center',
+});
+
+overlayPdfBtn.addEventListener('mouseenter', () => {
+  overlayPdfBtn.style.background = '#357abd';
+  overlayPdfBtn.style.boxShadow = '0 8px 28px rgba(74, 144, 217, 0.55)';
+  overlayPdfBtn.style.transform = 'translateX(-50%) scale(1.02)';
+});
+overlayPdfBtn.addEventListener('mouseleave', () => {
+  overlayPdfBtn.style.background = '#4a90d9';
+  overlayPdfBtn.style.boxShadow = '0 8px 24px rgba(74, 144, 217, 0.4)';
+  overlayPdfBtn.style.transform = 'translateX(-50%)';
+});
 
 overlay.appendChild(overlayImg);
 overlay.appendChild(overlayClose);
+overlay.appendChild(overlayPdfBtn);
 document.body.appendChild(overlay);
 
-function openOverlay(src) {
+function openOverlay(src, pdfUrl) {
   if (!src) return;
   overlayImg.src = src;
+  if (pdfUrl) {
+    overlayPdfBtn.href = pdfUrl;
+    overlayPdfBtn.style.display = 'inline-flex';
+  } else {
+    overlayPdfBtn.style.display = 'none';
+  }
   overlay.style.pointerEvents = 'all';
   overlay.style.opacity = '1';
   setTimeout(() => { overlayImg.style.transform = 'scale(1)'; }, 10);
@@ -115,8 +164,9 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeOverlay
 cards.forEach(card => {
   card.addEventListener('click', () => {
     const img = card.querySelector('.cert-img-wrap img');
+    const pdfUrl = card.getAttribute('data-pdf');
     if (img && img.src && !img.style.display.includes('none')) {
-      openOverlay(img.src);
+      openOverlay(img.src, pdfUrl);
     }
   });
 });

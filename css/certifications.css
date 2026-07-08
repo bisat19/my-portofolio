@@ -428,18 +428,15 @@ body {
     }
 
     .cert-img-wrap img {
+      position: absolute;
+      top: 0; left: 0;
       width: 100%; height: 100%;
       object-fit: cover;
       transition: transform 0.35s ease;
+      z-index: 2;
     }
 
     .cert-card:hover .cert-img-wrap img { transform: scale(1.04); }
-
-    /* Placeholder when no img */
-    .cert-placeholder {
-      font-size: 2.5rem;
-      opacity: 0.22;
-    }
 
     /* Ribbon tag top-right */
     .cert-ribbon {
